@@ -1,0 +1,81 @@
+.news-header{
+    margin: 20px auto;
+    font-family: 'Lobster', cursive;
+    color: #0575B7;
+    text-shadow:
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.news-block{
+    margin: 10px;
+    padding: 10px;
+    /*font-size: 20px;*/
+    float: left;
+    width: 760px;
+}
+
+.news-block-header{
+    font-weight: bold;
+    margin: 0;
+    float: left;
+}
+
+.news-block-header div{
+    width: 600px;
+    float: left;
+}
+
+.news-block-header label{
+    float: left;
+}
+
+.news-block-content{
+    margin: 0;
+    padding: 10px;
+}
+
+.news-article-link {
+    margin: 0;
+    float: right;
+}
+
+.hr-header {
+    background-color: #000000;
+    height: 2px;
+    margin: 5px;
+}
+
+.add-article-ref{
+    margin: 10px;
+}
+
+.article-operations{
+    padding-top: 10px;
+    float: right;
+}
+
+.article-operations button, a{
+    float: left;
+    margin-right: 5px;
+}
+
+.main-panel{
+    width: 1000px;
+    margin: auto;
+}
+
+.main-panel button, input[type="checkbox"]{
+    float: right;
+}
+
+.left-part{
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    float: left;
+}

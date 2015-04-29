@@ -14,17 +14,32 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-  </dependencies>
-  <build>
-    <finalName>com.epam.star</finalName>
-  </build>
 
-  <!--todo add 1.x Struts taglib-->
-  <dependencies>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>bootstrap</artifactId>
+      <version>3.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.efsavage.jquery</groupId>
+      <artifactId>jquery-maven</artifactId>
+      <version>1.7.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-core</artifactId>
       <version>2.3.20</version>
     </dependency>
   </dependencies>
+  <build>
+    <!--<finalName>test.war</finalName>-->
+  </build>
 </project>
