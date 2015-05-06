@@ -2,6 +2,6 @@
 <html>
 <body>
 <h2>Hello World!</h2>
-<c:redirect url="NewsList.jsp"/>
+<c:redirect url="/news-list.do"/>
 </body>
 </html>

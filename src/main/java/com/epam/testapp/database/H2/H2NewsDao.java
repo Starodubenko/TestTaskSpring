@@ -1,4 +1,7 @@
 package com.epam.testapp.database.H2;
 
-public class H2NewsDao extends AbstractDao{
+import com.epam.testapp.database.NewsDao;
+import com.epam.testapp.model.entity.News;
+
+public class H2NewsDao extends AbstractDao<News> implements NewsDao {
 }

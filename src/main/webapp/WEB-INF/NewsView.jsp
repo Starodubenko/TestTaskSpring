@@ -6,7 +6,7 @@
 <head>
     <title>News list</title>
     <link rel='stylesheet' href='<c:url value="webjars/bootstrap/3.2.0/css/bootstrap.css"/>'>
-    <link rel="stylesheet" href="<c:url value="style/news.css"/>">
+    <link rel="stylesheet" href="<c:url value="../style/news.css"/>">
 </head>
 <body>
 
@@ -30,41 +30,31 @@
 
     <div class="news-block panel panel-default">
 
-        <div>
-            <label>News list</label>
-        </div>
-
         <div class="news-block-header text-center">
-            <%--<div class="form-group input-block">--%>
-                <%--<input type="text" name="title" class="form-control color-tooltip input" value="<c:if test="${not empty article}">${article.title}</c:if>">--%>
-                <%--<input type="text" name="title" class="form-control color-tooltip input" value="">--%>
-            <%--</div>--%>
-            <%--<div><c:if test="${not empty article}">${article.title}</c:if></div>--%>
-            <div>Title of news</div>
-            <label>01.05.2015</label>
+            <div>
+                <label><a href="/news-list.do">News list</a></label><label>>></label><label>News view</label>
+            </div>
+
+            <div class="form-group input-block">
+            <input type="text" name="title" class="form-control color-tooltip input" value="${news.title}">
+            </div>
+            <div><c:if test="${not empty news}">${news.title}</c:if></div>
         </div>
-        <br/>
+        <br/><br/>
         <hr class="hr-header">
         <div class="news-block-content panel panel-default">
-            <%--<textarea class="form-control" rows="23">NewsNewsNewsNewsNewsNewsNewsNewsNewsNewsNewsNewsNews</textarea>--%>
-            <%--<textarea class="form-control" rows="23"><c:if test="${not empty article}">${article.text}</c:if></textarea>--%>
-
-            <div>NewsNewsNewsNewsNewsNewsNewsNewsNewsNewsNewsNewsNews</div>
+            <textarea class="form-control" rows="23"><c:if test="${not empty news}">${news.content}</c:if></textarea>
         </div>
 
         <div class="clear"></div>
 
         <div class="article-operations">
             <input type="checkbox" value=""/>
-            <a href="NewsView.jsp">View</a>
             <a href="News.jsp">Edit</a>
+            <button>Delete</button>
         </div>
     </div>
-    <button id="delete">Delete</button>
 </div>
-
-
-
 </body>
 <script src="<c:url value="/webjars/jquery/1.11.1/jquery.js"/>"></script>
 <script src="<c:url value="/webjars/bootstrap/3.2.0/js/bootstrap.js"/>"></script>

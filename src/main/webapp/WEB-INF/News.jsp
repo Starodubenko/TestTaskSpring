@@ -6,7 +6,7 @@
 <head>
     <title>News list</title>
     <link rel='stylesheet' href='<c:url value="webjars/bootstrap/3.2.0/css/bootstrap.css"/>'>
-    <link rel="stylesheet" href="<c:url value="style/news.css"/>">
+    <link rel="stylesheet" href="<c:url value="../style/news.css"/>">
 </head>
 <body>
 

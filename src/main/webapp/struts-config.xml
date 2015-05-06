@@ -1,0 +1,55 @@
+<struts-config>
+
+    <!-- Spring Struts plugin -->
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+        <set-property property="contextConfigLocation" value="spring-config.xml"/>
+    </plug-in>
+
+    <form-beans>
+        <form-bean name="searchForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="isbn" type="java.lang.String"/>
+        </form-bean>
+
+    </form-beans>
+
+    <global-forwards type="org.apache.struts.action.ActionForward">
+        <forward name="news" path="/news.do"/>
+        <!--<forward   name="news-list"     path="/WEB-INF/NewsList.jsp"/>-->
+        <forward name="news-list" path="/WEB-INF/NewsList.jsp"/>
+        <forward name="news-view" path="/WEB-INF/NewsView.jsp"/>
+        <!--<forward   name="searchSubmit"  path="/searchSubmit.do"/>-->
+    </global-forwards>
+
+    <action-mappings>
+        <!--<action name="searchForm"-->
+        <!--path="/news-list"-->
+        <!--type="com.epam.testapp.presentation.action.NewsListAction"-->
+        <!--validate="false">-->
+        <!--<forward name="success" path="/news-list.jsp"/>-->
+        <!--</action>-->
+
+        <action path="/news-list"
+                type="com.epam.testapp.presentation.action.ShowNewsListAction">
+            <forward name="success" path="WEB-INF/NewsList.jsp"/>
+        </action>
+        <action path="/news-view"
+                type="com.epam.testapp.presentation.action.ShowNewsViewAction">
+            <forward name="success" path="WEB-INF/NewsView.jsp"/>
+        </action>
+        <action path="/news" forward="/WEB-INF/News.jsp"/>
+
+
+        <!--тут -->
+        <!--<action    path="/searchEntry" forward="/WEB-INF/pages/search.jsp"/>-->
+        <!--<action    path="/searchSubmit"-->
+        <!--type="ca.nexcel.books.actions.SearchSubmit"-->
+        <!--input="/searchEntry.do"-->
+        <!--validate="true"-->
+        <!--name="searchForm">-->
+        <!--<forward name="success" path="/WEB-INF/pages/detail.jsp"/>-->
+        <!--<forward name="failure" path="/WEB-INF/pages/search.jsp"/>-->
+        <!--</action>-->
+
+    </action-mappings>
+</struts-config>
