@@ -15,11 +15,12 @@ public class ShowNewsListAction extends ActionSupport{
 
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,HttpServletResponse response) throws Exception {
 
-        Dao<News> customerBo = (Dao) getWebApplicationContext().getBean("newsDaoBean");
+        Dao<News> newsDao = (Dao) getWebApplicationContext().getBean("newsDaoBean");
 
-        List<News> news = customerBo.findAll();
+        List<News> news = newsDao.findAll();
 
         request.setAttribute("newses", news);
+        request.setAttribute("target", "list");
 
         return mapping.findForward("news-list");
     }

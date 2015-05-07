@@ -19,13 +19,14 @@
         </div>
 
         <div>
-            <input id="newsList" name="newsOption" type="radio" value="">
+            <input id="newsList" name="newsOption" type="radio" onclick="document.location='/news-list.do';"<c:if test="${target == 'list'}">checked</c:if>>
             <label for="newsList">News list</label>
         </div>
         <div>
-            <input id="addList" name="newsOption" type="radio" value="Add news">
+            <input id="addList" name="newsOption" type="radio" onclick="document.location='/add-news.do';"<c:if test="${target == 'add'}">checked</c:if>>
             <label for="addList">Add news</label>
         </div>
+
     </div>
 
     <div class="news-block panel panel-default">
@@ -50,7 +51,7 @@
         <div class="article-operations">
             <input type="checkbox" value=""/>
             <a href="/news-view.do?id=${news.id}">View</a>
-            <a href="News.jsp">Edit</a>
+            <a href="/news.do?id=${news.id}">Edit</a>
         </div>
             <br/>
             <br/>

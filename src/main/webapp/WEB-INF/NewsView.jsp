@@ -19,11 +19,11 @@
         </div>
 
         <div>
-            <input id="newsList" name="newsOption" type="radio" value="">
+            <input id="newsList" name="newsOption" type="radio" onclick="document.location='/news-list.do';"<c:if test="${target == 'list'}">checked</c:if>>
             <label for="newsList">News list</label>
         </div>
         <div>
-            <input id="addList" name="newsOption" type="radio" value="Add news">
+            <input id="addList" name="newsOption" type="radio" onclick="document.location='/add-news.do';"<c:if test="${target == 'add'}">checked</c:if>>
             <label for="addList">Add news</label>
         </div>
     </div>
@@ -34,22 +34,14 @@
             <div>
                 <label><a href="/news-list.do">News list</a></label><label>>></label><label>News view</label>
             </div>
-
-            <div class="form-group input-block">
-            <input type="text" name="title" class="form-control color-tooltip input" value="${news.title}">
-            </div>
-            <div><c:if test="${not empty news}">${news.title}</c:if></div>
+            <div>${news.title}</div>
+            <label>${news.date}</label>
         </div>
         <br/><br/>
         <hr class="hr-header">
-        <div class="news-block-content panel panel-default">
-            <textarea class="form-control" rows="23"><c:if test="${not empty news}">${news.content}</c:if></textarea>
-        </div>
-
+        <div>${news.content}</div>
         <div class="clear"></div>
-
         <div class="article-operations">
-            <input type="checkbox" value=""/>
             <a href="News.jsp">Edit</a>
             <button>Delete</button>
         </div>

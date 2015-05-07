@@ -6,28 +6,28 @@
     </plug-in>
 
     <form-beans>
-        <form-bean name="searchForm"
-                   type="org.apache.struts.validator.DynaValidatorForm">
-            <form-property name="isbn" type="java.lang.String"/>
+        <form-bean name="navForm" type="org.springframework.web.struts.SpringBindingActionForm">
+            <form-property name="title" type="java.lang.String"/>
+            <form-property name="date" type="java.lang.String"/>
+            <form-property name="brief" type="java.lang.String"/>
+            <form-property name="content" type="java.lang.String"/>
         </form-bean>
-
     </form-beans>
 
     <global-forwards type="org.apache.struts.action.ActionForward">
-        <forward name="news" path="/news.do"/>
-        <!--<forward   name="news-list"     path="/WEB-INF/NewsList.jsp"/>-->
+        <forward name="news" path="/WEB-INF/News.jsp"/>
         <forward name="news-list" path="/WEB-INF/NewsList.jsp"/>
         <forward name="news-view" path="/WEB-INF/NewsView.jsp"/>
         <!--<forward   name="searchSubmit"  path="/searchSubmit.do"/>-->
     </global-forwards>
 
     <action-mappings>
-        <!--<action name="searchForm"-->
-        <!--path="/news-list"-->
-        <!--type="com.epam.testapp.presentation.action.NewsListAction"-->
-        <!--validate="false">-->
-        <!--<forward name="success" path="/news-list.jsp"/>-->
-        <!--</action>-->
+        <action name="navForm"
+        path="/submit-add-form"
+        type="com.epam.testapp.presentation.action.NewsListAction"
+        validate="false">
+        <forward name="success" path="/news-list.jsp"/>
+        </action>
 
         <action path="/news-list"
                 type="com.epam.testapp.presentation.action.ShowNewsListAction">
@@ -37,7 +37,14 @@
                 type="com.epam.testapp.presentation.action.ShowNewsViewAction">
             <forward name="success" path="WEB-INF/NewsView.jsp"/>
         </action>
-        <action path="/news" forward="/WEB-INF/News.jsp"/>
+        <action path="/news"
+                type="com.epam.testapp.presentation.action.ShowNewsAction">
+            <forward name="success" path="WEB-INF/News.jsp"/>
+        </action>
+        <action path="/add-news"
+                type="com.epam.testapp.presentation.action.ShowNewsAction">
+            <forward name="success" path="WEB-INF/News.jsp"/>
+        </action>
 
 
         <!--тут -->

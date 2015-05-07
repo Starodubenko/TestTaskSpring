@@ -27,8 +27,12 @@ public class AbstractDao<T extends AbstractEntity> extends JdbcDaoSupport{
     }
 
     @Autowired
-    public void insert() {
-
+    public void insert(News news) {
+        T entity = (T) getJdbcTemplate().
+                queryForObject("INSERT INTO NEWS VALUES (?, ?, ?, ?)",
+                        new Object[]{news.getId(), news.getDate(), news.getBrief(), news.getContent()},
+                        new NewsMapper()
+                );
     }
 
     @Autowired

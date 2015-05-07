@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface Dao<T extends AbstractEntity> {
     T findById(int id);
-    void insert();
+    void insert(T entity);
     void update();
     void delete();
 

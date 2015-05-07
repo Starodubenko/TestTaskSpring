@@ -1,5 +1,6 @@
 package com.epam.testapp.presentation.action;
 
+
 import com.epam.testapp.database.Dao;
 import com.epam.testapp.model.entity.News;
 import org.apache.struts.action.ActionForm;
@@ -10,19 +11,14 @@ import org.springframework.web.struts.ActionSupport;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ShowNewsViewAction extends ActionSupport {
+public class AddNewsAction extends ActionSupport {
 
-    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,HttpServletResponse response) throws Exception {
-
-        Integer id = Integer.valueOf(request.getParameter("id"));
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         Dao<News> newsDao = (Dao) getWebApplicationContext().getBean("newsDaoBean");
 
-        News news = newsDao.findById(id);
+        newsDao.insert(form.);
 
-        request.setAttribute("news", news);
-        request.setAttribute("target", "list");
-
-        return mapping.findForward("news-view");
+        return mapping.findForward("news");
     }
 }
