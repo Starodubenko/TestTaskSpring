@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="st" uri="http://jakarta.apache.org/struts/tags-html" %>
 
 <html>
 <head>
@@ -19,47 +20,49 @@
         </div>
 
         <div>
-            <input id="newsList" name="newsOption" type="radio" onclick="document.location='/news-list.do';"<c:if test="${target == 'list'}">checked</c:if>>
+            <input id="newsList" name="newsOption" type="radio" onclick="document.location='/news-list.do';"
+                   <c:if test="${target == 'list'}">checked</c:if>>
             <label for="newsList">News list</label>
         </div>
         <div>
-            <input id="addList" name="newsOption" type="radio" onclick="document.location='/add-news.do';"<c:if test="${target == 'add'}">checked</c:if>>
+            <input id="addList" name="newsOption" type="radio" onclick="document.location='/add-news.do';"
+                   <c:if test="${target == 'add'}">checked</c:if>>
             <label for="addList">Add news</label>
         </div>
 
     </div>
 
-    <div class="news-block panel panel-default">
+    <st:form action="/submit-add-form">
+        <div class="news-block panel panel-default">
 
-        <div>
-            <label>News list</label>
-        </div>
-        <c:forEach var="news" items="${newses}">
-            <div class="news-block-header text-center">
-                <div>${news.title}</div>
-                <label>${news.date}</label>
+            <div>
+                <label>News list</label>
             </div>
-            <br/>
-            <hr class="hr-header">
-            <div class="news-block-content panel panel-default">
-                <div>${news.brief}</div>
-            </div>
+            <c:forEach var="news" items="${newses}">
+                <div class="news-block-header text-center">
+                    <div>${news.title}</div>
+                    <label>${news.date}</label>
+                </div>
+                <br/>
+                <hr class="hr-header">
+                <div class="news-block-content panel panel-default">
+                    <div>${news.brief}</div>
+                </div>
+                <div class="clear"></div>
 
-
-        <div class="clear"></div>
-
-        <div class="article-operations">
-            <input type="checkbox" value=""/>
-            <a href="/news-view.do?id=${news.id}">View</a>
-            <a href="/news.do?id=${news.id}">Edit</a>
+                <div class="article-operations">
+                    <%--<input type="checkbox" value=""/>--%>
+                    <st:multibox property="delArray" value="${news.id}"/>
+                    <a href="/news-view.do?id=${news.id}">View</a>
+                    <a href="/news.do?id=${news.id}">Edit</a>
+                </div>
+                <br/>
+                <br/>
+            </c:forEach>
         </div>
-            <br/>
-            <br/>
-        </c:forEach>
-    </div>
-    <button id="delete">Delete</button>
+        <st:submit value="Delete chacked" property="operationType"/>
+    </st:form>
 </div>
-
 
 
 </body>

@@ -22,6 +22,6 @@ public class ShowNewsListAction extends ActionSupport{
         request.setAttribute("newses", news);
         request.setAttribute("target", "list");
 
-        return mapping.findForward("news-list");
+        return mapping.findForward("success");
     }
 }

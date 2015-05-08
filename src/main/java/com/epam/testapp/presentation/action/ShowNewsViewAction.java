@@ -23,6 +23,6 @@ public class ShowNewsViewAction extends ActionSupport {
         request.setAttribute("news", news);
         request.setAttribute("target", "list");
 
-        return mapping.findForward("news-view");
+        return mapping.findForward("success");
     }
 }

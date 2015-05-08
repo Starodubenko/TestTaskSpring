@@ -21,10 +21,10 @@ public class ShowNewsAction extends ActionSupport {
             News news = newsDao.findById(id);
             request.setAttribute("news", news);
             request.setAttribute("target", "list");
-            return mapping.findForward("news");
+            return mapping.findForward("success");
         } else {
             request.setAttribute("target", "add");
-            return mapping.findForward("news");
+            return mapping.findForward("success");
         }
     }
 }

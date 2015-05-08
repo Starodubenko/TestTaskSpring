@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="st" uri="http://jakarta.apache.org/struts/tags-html" %>
 
 <html>
 <head>
@@ -29,7 +30,10 @@
         </div>
     </div>
 
-    <form name="navForm" class="news-block panel panel-default">
+    <st:form action="/submit-add-form" styleClass="news-block panel panel-default">
+
+        <st:hidden property="id" value="${news.id}"/>
+
         <div class="news-block-header text-center">
             <div>
                 <label><a href="/news-list.do">News list</a></label> <label>>></label>
@@ -39,13 +43,13 @@
 
             <div><label>News title</label></div>
             <div class="form-group input-block">
-                <input type="text" name="title" class="form-control color-tooltip input" value="<c:if test="${not empty news}">${news.title}</c:if>">
+                <st:text value="${news.title}" property="title" styleClass="form-control color-tooltip input"/>
             </div>
             <div>
                 <label>News date</label>
             </div>
             <div class="form-group input-block">
-                <input type="text" name="date" class="form-control color-tooltip input" value="<c:if test="${not empty news}">${news.date}</c:if>">
+                <st:text value="${news.date}" property="date" styleClass="form-control color-tooltip input"/>
             </div>
 
         </div>
@@ -53,26 +57,27 @@
         <hr class="hr-header">
         <div><label>Brief</label></div>
         <div class="news-block-content panel panel-default">
-            <textarea name="brief" class="form-control" rows="5"><c:if test="${not empty news}">${news.brief}</c:if></textarea>
+            <st:textarea value="${news.brief}" property="brief" styleClass="form-control color-tooltip input"/>
         </div>
         <div><label>Content</label></div>
         <div class="news-block-content panel panel-default">
-            <textarea name="content" class="form-control" rows="23"><c:if test="${not empty news}">${news.content}</c:if></textarea>
+            <st:textarea value="${news.content}" property="content" styleClass="form-control color-tooltip input"/>
         </div>
-
         <div class="clear"></div>
-
         <div class="article-operations">
             <div class="article-operations">
-                <c:if test="${target == 'add' or not empty news}">
-                    <button id="save">Save</button>
+                <c:if test="${target == 'add'}">
+                    <st:submit value="Save" property="operationType"/>
+                </c:if>
+                <c:if test="${not empty news}">
+                    <st:submit value="Update" property="operationType"/>
                 </c:if>
                 <c:if test="${target == 'list'}">
-                    <button id="remove">Delete</button>
+                    <st:submit value="Delete" property="operationType"/>
                 </c:if>
             </div>
         </div>
-    </form>
+    </st:form>
 </div>
 
 

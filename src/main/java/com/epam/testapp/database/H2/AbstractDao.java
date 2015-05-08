@@ -10,10 +10,15 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.Format;
 import java.util.List;
 
 @Component
-public class AbstractDao<T extends AbstractEntity> extends JdbcDaoSupport{
+public abstract class AbstractDao<T extends AbstractEntity> extends JdbcDaoSupport{
+
+    private final String INSERT = "INSERT INTO %s VALUES %s";
+    private final String UPDATE = "UPDATE %s SET %s WHERE ID = %s";
+    private final String DELETE = "DELETE FROM %s WHERE ID = %s";
 
     @Autowired
     public T findById(int id) {
@@ -27,28 +32,33 @@ public class AbstractDao<T extends AbstractEntity> extends JdbcDaoSupport{
     }
 
     @Autowired
-    public void insert(News news) {
-        T entity = (T) getJdbcTemplate().
-                queryForObject("INSERT INTO NEWS VALUES (?, ?, ?, ?)",
-                        new Object[]{news.getId(), news.getDate(), news.getBrief(), news.getContent()},
-                        new NewsMapper()
+    public void insert(T entity) {
+        getJdbcTemplate().
+                update(String.format(INSERT, getEntityClass().getSimpleName(), generateAnyFieldsCountString(getEntity(entity))),
+                        getEntity(entity)
                 );
     }
 
     @Autowired
-    public void update() {
-
+    public void update(T entity) {
+        Object[] entity1 = getEntity(entity);
+        String format = String.format(UPDATE, getEntityClass().getSimpleName(), getUpdateFieldBlock(), getEntity(entity)[0]);
+        getJdbcTemplate().
+                update(String.format(UPDATE, getEntityClass().getSimpleName(), getUpdateFieldBlock(), getEntity(entity)[0]),
+                        getEntity(entity)
+                );
     }
 
     @Autowired
-    public void delete() {
-
+    public void delete(int id) {
+        getJdbcTemplate().
+                execute(String.format(DELETE,getEntityClass().getSimpleName(), id));
     }
 
     @Autowired
     public List<T> findAll() {
 
-        String query = "SELECT * FROM NEWS";
+        String query = "SELECT * FROM NEWS ORDER BY NEWS_DATE DESC";
         List<T> entityList = getJdbcTemplate().query(query, new NewsMapper());
         return entityList;
     }
@@ -65,5 +75,20 @@ public class AbstractDao<T extends AbstractEntity> extends JdbcDaoSupport{
             news.setContent(rs.getString("CONTENT"));
             return (T)news;
         }
+    }
+
+    protected abstract Object[] getEntity(T entity);
+    protected abstract String getUpdateFieldBlock();
+    protected abstract Class getEntityClass();
+
+    private String generateAnyFieldsCountString(Object[] o){
+        StringBuilder result = new StringBuilder("(");
+        for (int i = 0; i < o.length; i++) {
+            if (i == o.length-1)
+                result.append("?)");
+            else
+            result.append("?,");
+        }
+        return result.toString();
     }
 }

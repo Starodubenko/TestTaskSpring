@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="st" uri="http://jakarta.apache.org/struts/tags-html" %>
 
 <html>
 <head>
@@ -19,33 +20,38 @@
         </div>
 
         <div>
-            <input id="newsList" name="newsOption" type="radio" onclick="document.location='/news-list.do';"<c:if test="${target == 'list'}">checked</c:if>>
+            <input id="newsList" name="newsOption" type="radio" onclick="document.location='/news-list.do';"
+                   <c:if test="${target == 'list'}">checked</c:if>>
             <label for="newsList">News list</label>
         </div>
         <div>
-            <input id="addList" name="newsOption" type="radio" onclick="document.location='/add-news.do';"<c:if test="${target == 'add'}">checked</c:if>>
+            <input id="addList" name="newsOption" type="radio" onclick="document.location='/add-news.do';"
+                   <c:if test="${target == 'add'}">checked</c:if>>
             <label for="addList">Add news</label>
         </div>
     </div>
 
-    <div class="news-block panel panel-default">
+    <st:form action="/submit-add-form" styleClass="news-block panel panel-default">
+        <st:hidden property="id" value="${news.id}"/>
 
         <div class="news-block-header text-center">
-            <div>
-                <label><a href="/news-list.do">News list</a></label><label>>></label><label>News view</label>
-            </div>
             <div>${news.title}</div>
             <label>${news.date}</label>
         </div>
-        <br/><br/>
+        <br/>
         <hr class="hr-header">
-        <div>${news.content}</div>
-        <div class="clear"></div>
-        <div class="article-operations">
-            <a href="News.jsp">Edit</a>
-            <button>Delete</button>
+        <div class="news-block-content panel panel-default">
+            <div>${news.content}</div>
         </div>
-    </div>
+        <div class="clear"></div>
+
+        <div class="article-operations">
+            <div class="article-operations">
+                <a href="/news.do?id=${news.id}">Edit</a>
+                <st:submit value="Delete" property="operationType"/>
+            </div>
+        </div>
+    </st:form>
 </div>
 </body>
 <script src="<c:url value="/webjars/jquery/1.11.1/jquery.js"/>"></script>
