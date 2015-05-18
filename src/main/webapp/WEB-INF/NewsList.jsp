@@ -47,7 +47,7 @@
 
     </div>
 
-    <st:form action="/submit-add-form">
+    <st:form action="/submit-form">
         <div class="news-block panel panel-default">
             <div>
                 <label>News list</label>
@@ -65,8 +65,7 @@
                 <div class="clear"></div>
 
                 <div class="article-operations">
-                    <%--<input type="checkbox" value=""/>--%>
-                    <st:multibox property="delArray" value="${news.id}"/>
+                    <input type="checkbox" name="delArray" value="${news.id}"/>
                     <a href="/news-view.do?id=${news.id}">View</a>
                     <a href="/news.do?id=${news.id}">Edit</a>
                 </div>
@@ -74,7 +73,7 @@
                 <br/>
             </c:forEach>
         </div>
-        <st:submit value="Delete chacked" property="operationType"/>
+        <st:submit value="Delete checked" property="operationType"/>
     </st:form>
 </div>
 

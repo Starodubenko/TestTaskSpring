@@ -31,7 +31,7 @@
 
     <action-mappings>
         <action name="operationForm"
-                path="/submit-add-form"
+                path="/submit-form"
                 type="com.epam.testapp.presentation.action.NewsOperationAction"
                 validate="false">
             <forward name="success" path="/news-list.do"/>

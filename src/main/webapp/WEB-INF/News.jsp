@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <st:form action="/submit-add-form" styleClass="news-block panel panel-default">
+    <st:form action="/submit-form" styleClass="news-block panel panel-default">
 
         <st:hidden property="id" value="${news.id}"/>
 
