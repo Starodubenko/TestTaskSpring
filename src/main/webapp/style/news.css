@@ -1,14 +1,10 @@
 .news-header{
-    margin: 20px auto;
-    font-family: 'Lobster', cursive;
-    color: #0575B7;
-    text-shadow:
-    -1px -1px 0 #000000,
-    1px -1px 0 #000000,
-    -1px 1px 0 #000000,
-    1px 1px 0 #000000;
-    text-align: center;
-    margin: 30px auto;
+    height: 50px;
+    padding: 10px;
+}
+
+.news-header label{
+    margin-left: 50px;
 }
 
 .news-block{
@@ -78,4 +74,13 @@
     padding: 10px;
     margin: 10px;
     float: left;
+}
+
+.select-language{
+    float: right;
+}
+
+.select-language input{
+    height: 20px;
+    padding: 0;
 }

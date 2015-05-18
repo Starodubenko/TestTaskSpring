@@ -15,12 +15,17 @@
             <form-property name="operationType" type="java.lang.String"/>
             <form-property name="delArray" type="java.lang.Boolean[]"/>
         </form-bean>
+
+        <form-bean name="localeForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="locale" type="java.lang.String"/>
+        </form-bean>
     </form-beans>
 
     <global-forwards type="org.apache.struts.action.ActionForward">
-        <forward name="news" path="/news.do"/>
-        <forward name="news-list" path="/news-list.do"/>
-        <forward name="news-view" path="/news-view.do"/>
+        <forward name="news" path="/news.do" redirect="true"/>
+        <forward name="news-list" path="/news-list.do" redirect="true"/>
+        <forward name="news-view" path="/news-view.do" redirect="true"/>
+        <forward name="add-news" path="/add-news.do" redirect="true"/>
         <!--<forward   name="searchSubmit"  path="/searchSubmit.do"/>-->
     </global-forwards>
 
@@ -49,6 +54,36 @@
             <forward name="success" path="/news.do"/>
         </action>
 
+        <action path="/change-locale"
+                name="localeForm"
+                validate="false"
+                type="com.epam.testapp.presentation.action.ChangeLocaleAction" parameter="language">
+            <forward name="success" path="/" redirect="true"/>
+        </action>
+
+        <bean id="messageSource"
+                class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+            <property name="basename" value="classpath:message"/>
+            <property name="defaultEncoding" value="UTF-8"/>
+        </bean>
+
+        <bean id="localeResolver"
+              class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+            <property name="defaultLocale" value="en"/>
+        </bean>
+
+        <bean id="localeChangeInterceptor"
+              class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="parameterName" value="language"/>
+        </bean>
+
+        <bean id="handlerMapping"
+              class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+            <property name="interceptors">
+                <ref bean="localeChangeInterceptor"/>
+            </property>
+        </bean>
+
 
         <!--<action    path="/searchEntry" forward="/WEB-INF/pages/search.jsp"/>-->
         <!--<action    path="/searchSubmit"-->
@@ -61,4 +96,5 @@
         <!--</action>-->
 
     </action-mappings>
+    <message-resources parameter="message"/>
 </struts-config>

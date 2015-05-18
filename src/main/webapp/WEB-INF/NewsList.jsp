@@ -2,6 +2,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="st" uri="http://jakarta.apache.org/struts/tags-html" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+
 
 <html>
 <head>
@@ -11,7 +15,18 @@
 </head>
 <body>
 
-<h1 class="news-header">Новости</h1>
+<div class="news-header panel panel-default">
+    <label><bean:message key="message.news.management"/></label>
+
+    <%--<st:form action="/change-locale" styleClass="select-language">--%>
+        <%--<st:submit property="locale" value="English" title="English"/>--%>
+        <%--<st:submit property="locale" value="Russian" title="Russian"/>--%>
+    <%--</st:form>--%>
+<html:link action="/change-locale?language=russian">Russian</html:link>
+<html:link action="/change-locale?language=english">English</html:link>
+    <%--<a href="?language=en">English</a>--%>
+    <%--<a href="?language=ru">Russian</a>--%>
+</div>
 
 <div class="main-panel">
     <div class="left-part">
@@ -34,7 +49,6 @@
 
     <st:form action="/submit-add-form">
         <div class="news-block panel panel-default">
-
             <div>
                 <label>News list</label>
             </div>
