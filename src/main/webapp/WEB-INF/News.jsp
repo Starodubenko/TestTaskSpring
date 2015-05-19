@@ -41,6 +41,8 @@
         </div>
     </div>
 
+    <st:errors/>
+
     <st:form action="/submit-form" styleClass="news-block panel panel-default">
 
         <st:hidden property="id" value="${news.id}"/>
@@ -60,7 +62,7 @@
                 <label>News date</label>
             </div>
             <div class="form-group input-block">
-                <st:text value="${news.date}" property="date" styleClass="form-control color-tooltip input"/>
+                <st:text value="${news.date}" property="newsDate" styleClass="form-control color-tooltip input"/>
             </div>
 
         </div>
