@@ -11,10 +11,13 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Component
-public abstract class AbstractDao<T extends AbstractEntity> extends JdbcDaoSupport{
+public abstract class AbstractDao<T extends AbstractEntity> extends JdbcDaoSupport {
 
     private final String INSERT = "INSERT INTO %s VALUES %s";
     private final String UPDATE = "UPDATE %s SET %s WHERE ID = %s";
@@ -52,7 +55,7 @@ public abstract class AbstractDao<T extends AbstractEntity> extends JdbcDaoSuppo
     @Autowired
     public void delete(int id) {
         getJdbcTemplate().
-                execute(String.format(DELETE,getEntityClass().getSimpleName(), id));
+                execute(String.format(DELETE, getEntityClass().getSimpleName(), id));
     }
 
     @Autowired
@@ -67,27 +70,34 @@ public abstract class AbstractDao<T extends AbstractEntity> extends JdbcDaoSuppo
 
         public T mapRow(ResultSet rs, int rowNum)
                 throws SQLException {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             News news = new News();
-            news.setId(rs.getInt("ID"));
-            news.setTitle(rs.getString("TITLE"));
-            news.setDate(rs.getDate("NEWS_DATE"));
-            news.setBrief(rs.getString("BRIEF"));
-            news.setContent(rs.getString("CONTENT"));
-            return (T)news;
+            try {
+                news.setId(rs.getInt("ID"));
+                news.setTitle(rs.getString("TITLE"));
+                news.setDate(format.parse(rs.getString("NEWS_DATE")));
+                news.setBrief(rs.getString("BRIEF"));
+                news.setContent(rs.getString("CONTENT"));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return (T) news;
         }
     }
 
     protected abstract Object[] getEntity(T entity);
+
     protected abstract String getUpdateFieldBlock();
+
     protected abstract Class getEntityClass();
 
-    private String generateAnyFieldsCountString(Object[] o){
+    private String generateAnyFieldsCountString(Object[] o) {
         StringBuilder result = new StringBuilder("(");
         for (int i = 0; i < o.length; i++) {
-            if (i == o.length-1)
+            if (i == o.length - 1)
                 result.append("?)");
             else
-            result.append("?,");
+                result.append("?,");
         }
         return result.toString();
     }

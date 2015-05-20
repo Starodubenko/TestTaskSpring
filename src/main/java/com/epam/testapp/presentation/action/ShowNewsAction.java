@@ -12,11 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ShowNewsAction extends ActionSupport {
 
-    public ActionForward execute(ActionMapping mapping,ActionForm form, HttpServletRequest request,HttpServletResponse response)
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        if (request.getParameter("id") != null) {
-            Integer id = Integer.valueOf(request.getParameter("id"));
+        Integer id = null;
+        if (request.getParameter("id") != null)
+            id = Integer.valueOf(request.getParameter("id"));
+        else if (request.getSession().getAttribute("id") != null)
+            id = Integer.valueOf(String.valueOf(request.getSession().getAttribute("id")));
+
+        if (id != null) {
             Dao<News> newsDao = (Dao) getWebApplicationContext().getBean("newsDaoBean");
             News news = newsDao.findById(id);
             request.setAttribute("news", news);

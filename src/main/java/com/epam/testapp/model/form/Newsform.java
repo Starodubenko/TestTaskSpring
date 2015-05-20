@@ -3,34 +3,29 @@ package com.epam.testapp.model.form;
 
 import org.apache.struts.validator.ValidatorForm;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Newsform extends ValidatorForm {
 
-    private Integer id;
-    private String name;
+    private String id;
     private String title;
-    private Date newsDate;
+    private String newsDate;
     private String brief;
     private String content;
 
+    private String operationType;
 
-    public Integer getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        if (id == null || id.equals("")) this.id = null;
+        else this.id = id;
     }
 
     public String getTitle() {
@@ -41,16 +36,12 @@ public class Newsform extends ValidatorForm {
         this.title = title;
     }
 
-    public Date getNewsDate() {
+    public String getNewsDate() {
         return newsDate;
     }
 
-    public void setNewsDate(String newsDate){
-        try {
-            this.newsDate = new SimpleDateFormat("dd.MM.yyyy").parse(newsDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setNewsDate(String newsDate) throws ParseException {
+        this.newsDate = newsDate;
     }
 
     public String getBrief() {
@@ -67,5 +58,13 @@ public class Newsform extends ValidatorForm {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getOperationType() {
+        return operationType;
+    }
+
+    public void setOperationType(String operationType) {
+        this.operationType = operationType;
     }
 }

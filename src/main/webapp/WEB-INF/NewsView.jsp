@@ -42,12 +42,14 @@
         </div>
     </div>
 
+    <st:errors/>
+
     <st:form action="/submit-form" styleClass="news-block panel panel-default">
         <st:hidden property="id" value="${news.id}"/>
 
         <div class="news-block-header text-center">
             <div>${news.title}</div>
-            <label>${news.date}</label>
+            <label>${news.getDateString()}</label>
         </div>
         <br/>
         <hr class="hr-header">

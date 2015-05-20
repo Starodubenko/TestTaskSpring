@@ -17,21 +17,23 @@ public class ChangeLocaleAction extends DispatchAction {
                                  HttpServletRequest request,HttpServletResponse response)
             throws Exception {
 
-        request.getSession().setAttribute(
-                Globals.LOCALE_KEY, new Locale("ru"));
+        request.getSession().setAttribute(Globals.LOCALE_KEY, new Locale("ru"));
 
-//        return mapping.findForward(request.getHeader("referer").split("/")[3].split("\\.")[0]);
-        return mapping.findForward("success");
+        request.getSession().setAttribute("id", request.getParameter("id"));
+
+        return mapping.findForward(request.getHeader("referer").split("/")[3].split("\\.")[0]);
+//        return mapping.findForward("success");
     }
 
     public ActionForward english(ActionMapping mapping,ActionForm form,
                                  HttpServletRequest request,HttpServletResponse response)
             throws Exception {
 
-        request.getSession().setAttribute(
-                Globals.LOCALE_KEY, Locale.ENGLISH);
+        request.getSession().setAttribute(Globals.LOCALE_KEY, Locale.ENGLISH);
 
-//        return mapping.findForward(request.getHeader("referer").split("/")[3].split("\\.")[0]);
-        return mapping.findForward("success");
+        request.getSession().setAttribute("id", request.getParameter("id"));
+
+        return mapping.findForward(request.getHeader("referer").split("/")[3].split("\\.")[0]);
+//        return mapping.findForward("success");
     }
 }

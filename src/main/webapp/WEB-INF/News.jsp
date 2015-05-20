@@ -19,8 +19,8 @@
     <st:form action="/change-locale" styleClass="select-language">
         <%--<st:submit property="locale" value="English" title="English"/>--%>
         <%--<st:submit property="locale" value="Russian" title="Russian"/>--%>
-        <html:link action="/change-locale?language=russian">Russian</html:link>
-        <html:link action="/change-locale?language=english">English</html:link>
+        <html:link action="/change-locale?language=russian&id=${news.id}">Russian</html:link>
+        <html:link action="/change-locale?language=english&id=${news.id}">English</html:link>
     </st:form>
 </div>
 
@@ -62,7 +62,7 @@
                 <label>News date</label>
             </div>
             <div class="form-group input-block">
-                <st:text value="${news.date}" property="newsDate" styleClass="form-control color-tooltip input"/>
+                <st:text value="${news.getDateString()}" property="newsDate" styleClass="form-control color-tooltip input"/>
             </div>
 
         </div>

@@ -1,5 +1,6 @@
 package com.epam.testapp.model.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class News extends AbstractEntity {
@@ -18,6 +19,10 @@ public class News extends AbstractEntity {
 
     public Date getDate() {
         return date;
+    }
+
+    public String getDateString() {
+        return new SimpleDateFormat("dd.MM.yyyy").format(date);
     }
 
     public void setDate(Date date) {

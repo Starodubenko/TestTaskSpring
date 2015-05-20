@@ -47,6 +47,8 @@
 
     </div>
 
+    <st:errors/>
+
     <st:form action="/submit-form">
         <div class="news-block panel panel-default">
             <div>
@@ -55,7 +57,7 @@
             <c:forEach var="news" items="${newses}">
                 <div class="news-block-header text-center">
                     <div>${news.title}</div>
-                    <label>${news.date}</label>
+                    <label>${news.getDateString()}</label>
                 </div>
                 <br/>
                 <hr class="hr-header">

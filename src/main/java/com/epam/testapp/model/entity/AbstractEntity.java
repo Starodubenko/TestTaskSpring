@@ -1,6 +1,5 @@
 package com.epam.testapp.model.entity;
 
-import org.apache.struts.action.ActionForm;
 
 public abstract class AbstractEntity{
 
