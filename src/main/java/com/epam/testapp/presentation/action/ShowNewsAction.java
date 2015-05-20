@@ -15,6 +15,8 @@ public class ShowNewsAction extends ActionSupport {
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
+        String resetId = request.getParameter("resetId");
+
         Integer id = null;
         if (request.getParameter("id") != null)
             id = Integer.valueOf(request.getParameter("id"));
@@ -29,7 +31,9 @@ public class ShowNewsAction extends ActionSupport {
             return mapping.findForward("success");
         } else {
             request.setAttribute("target", "add");
+            request.getSession().setAttribute("id", null);
             return mapping.findForward("success");
         }
+
     }
 }

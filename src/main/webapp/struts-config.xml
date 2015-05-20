@@ -57,7 +57,7 @@
         </action>
         <action path="/add-news"
                 type="com.epam.testapp.presentation.action.ShowNewsAction">
-            <forward name="success" path="/news.do"/>
+            <forward name="success" path="/WEB-INF/News.jsp"/>
         </action>
 
         <action path="/change-locale"
