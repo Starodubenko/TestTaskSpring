@@ -19,10 +19,9 @@ public class ChangeLocaleAction extends DispatchAction {
 
         request.getSession().setAttribute(Globals.LOCALE_KEY, new Locale("ru"));
 
-        request.getSession().setAttribute("id", request.getParameter("id"));
-
-        return mapping.findForward(request.getHeader("referer").split("/")[3].split("\\.")[0]);
-//        return mapping.findForward("success");
+        ActionForward forward = new ActionForward("/" + request.getHeader("referer").split("/")[3]);
+        forward.setRedirect(true);
+        return forward;
     }
 
     public ActionForward english(ActionMapping mapping,ActionForm form,
@@ -31,9 +30,8 @@ public class ChangeLocaleAction extends DispatchAction {
 
         request.getSession().setAttribute(Globals.LOCALE_KEY, Locale.ENGLISH);
 
-        request.getSession().setAttribute("id", request.getParameter("id"));
-
-        return mapping.findForward(request.getHeader("referer").split("/")[3].split("\\.")[0]);
-//        return mapping.findForward("success");
+        ActionForward forward = new ActionForward("/" + request.getHeader("referer").split("/")[3]);
+        forward.setRedirect(true);
+        return forward;
     }
 }

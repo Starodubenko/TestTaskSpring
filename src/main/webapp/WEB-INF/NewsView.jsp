@@ -17,8 +17,6 @@
     <label><bean:message key="message.news.management"/></label>
 
     <st:form action="/change-locale" styleClass="select-language">
-        <%--<st:submit property="locale" value="English" title="English"/>--%>
-        <%--<st:submit property="locale" value="Russian" title="Russian"/>--%>
         <html:link action="/change-locale?language=russian">Russian</html:link>
         <html:link action="/change-locale?language=english">English</html:link>
     </st:form>
@@ -27,18 +25,17 @@
 <div class="main-panel">
     <div class="left-part">
         <div>
-            <label>News</label>
+            <label><bean:message key="message.news.view"/></label>
         </div>
-
         <div>
             <input id="newsList" name="newsOption" type="radio" onclick="document.location='/news-list.do';"
                    <c:if test="${target == 'list'}">checked</c:if>>
-            <label for="newsList">News list</label>
+            <label for="newsList"><bean:message key="message.news.list"/></label>
         </div>
         <div>
             <input id="addList" name="newsOption" type="radio" onclick="document.location='/add-news.do';"
                    <c:if test="${target == 'add'}">checked</c:if>>
-            <label for="addList">Add news</label>
+            <label for="addList"><bean:message key="message.add.news"/></label>
         </div>
     </div>
 
@@ -60,8 +57,9 @@
 
         <div class="article-operations">
             <div class="article-operations">
-                <a href="/news.do?id=${news.id}">Edit</a>
-                <st:submit value="Delete" property="operationType"/>
+                <a href="/news.do?id=${news.id}"><bean:message key="message.news.edit"/></a>
+                <st:hidden property="operationType" value="Delete"/>
+                <button type="submit"><bean:message key="message.delete"/></button>
             </div>
         </div>
     </st:form>

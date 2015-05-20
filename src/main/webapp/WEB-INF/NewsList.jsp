@@ -9,7 +9,7 @@
 
 <html>
 <head>
-    <title>News list</title>
+    <title><bean:message key="message.news.list"/></title>
     <link rel='stylesheet' href='<c:url value="webjars/bootstrap/3.2.0/css/bootstrap.css"/>'>
     <link rel="stylesheet" href="<c:url value="../style/news.css"/>">
 </head>
@@ -18,33 +18,27 @@
 <div class="news-header panel panel-default">
     <label><bean:message key="message.news.management"/></label>
 
-    <%--<st:form action="/change-locale" styleClass="select-language">--%>
-        <%--<st:submit property="locale" value="English" title="English"/>--%>
-        <%--<st:submit property="locale" value="Russian" title="Russian"/>--%>
-    <%--</st:form>--%>
-<html:link action="/change-locale?language=russian">Russian</html:link>
-<html:link action="/change-locale?language=english">English</html:link>
-    <%--<a href="?language=en">English</a>--%>
-    <%--<a href="?language=ru">Russian</a>--%>
+    <st:form action="/change-locale" styleClass="select-language">
+        <html:link action="/change-locale?language=russian&id=${news.id}">Russian</html:link>
+        <html:link action="/change-locale?language=english&id=${news.id}">English</html:link>
+    </st:form>
 </div>
 
 <div class="main-panel">
     <div class="left-part">
         <div>
-            <label>News</label>
+            <label><bean:message key="message.news.list"/></label>
         </div>
-
         <div>
             <input id="newsList" name="newsOption" type="radio" onclick="document.location='/news-list.do';"
                    <c:if test="${target == 'list'}">checked</c:if>>
-            <label for="newsList">News list</label>
+            <label for="newsList"><bean:message key="message.news.list"/></label>
         </div>
         <div>
             <input id="addList" name="newsOption" type="radio" onclick="document.location='/add-news.do';"
                    <c:if test="${target == 'add'}">checked</c:if>>
-            <label for="addList">Add news</label>
+            <label for="addList"><bean:message key="message.add.news"/></label>
         </div>
-
     </div>
 
     <st:errors/>
@@ -52,7 +46,7 @@
     <st:form action="/submit-form">
         <div class="news-block panel panel-default">
             <div>
-                <label>News list</label>
+                <label><bean:message key="message.news.list"/></label>
             </div>
             <c:forEach var="news" items="${newses}">
                 <div class="news-block-header text-center">
@@ -68,14 +62,15 @@
 
                 <div class="article-operations">
                     <input type="checkbox" name="delArray" value="${news.id}"/>
-                    <a href="/news-view.do?id=${news.id}">View</a>
-                    <a href="/news.do?id=${news.id}">Edit</a>
+                    <a href="/news-view.do?id=${news.id}"><bean:message key="message.news.view"/></a>
+                    <a href="/news.do?id=${news.id}"><bean:message key="message.news.edit"/></a>
                 </div>
                 <br/>
                 <br/>
             </c:forEach>
         </div>
-        <st:submit value="Delete checked" property="operationType"/>
+        <st:hidden property="operationType" value="Delete checked"/>
+        <button type="submit"><bean:message key="message.delete.checked"/></button>
     </st:form>
 </div>
 
