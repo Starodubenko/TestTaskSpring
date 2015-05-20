@@ -7,7 +7,7 @@
 
 <html>
 <head>
-    <title>News list</title>
+    <title><bean:message key="message.news.view"/></title>
     <link rel='stylesheet' href='<c:url value="webjars/bootstrap/3.2.0/css/bootstrap.css"/>'>
     <link rel="stylesheet" href="<c:url value="../style/news.css"/>">
 </head>
