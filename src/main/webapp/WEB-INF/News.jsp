@@ -39,8 +39,6 @@
         </div>
     </div>
 
-    <st:errors/>
-
     <st:form action="/submit-form" styleClass="news-block panel panel-default">
 
         <st:hidden property="id" value="${news.id}"/>
@@ -55,25 +53,33 @@
             <div><label><bean:message key="message.news.title"/></label></div>
             <div class="form-group input-block">
                 <st:text value="${news.title}" property="title" styleClass="form-control color-tooltip input"/>
+                <div style="color: red"><st:errors property="title"/></div>
             </div>
             <div>
                 <label><bean:message key="message.news.date"/></label>
             </div>
             <div class="form-group input-block">
                 <st:text value="${news.getDateString()}" property="newsDate" styleClass="form-control color-tooltip input"/>
-            </div>
 
+                <div style="color: red"><st:errors property="newsDate"/></div>
+            </div>
         </div>
         <br/>
         <hr class="hr-header">
         <div><label><bean:message key="message.news.brief"/></label></div>
-        <div class="news-block-content panel panel-default">
+        <div class="form-group input-block news-block-content text-center">
             <st:textarea value="${news.brief}" property="brief" styleClass="form-control color-tooltip input"/>
+
+            <div style="color: red"><st:errors property="brief"/></div>
         </div>
+        <br/>
         <div><label><bean:message key="message.news.content"/></label></div>
-        <div class="news-block-content panel panel-default">
+        <div class="form-group input-block news-block-content text-center">
             <st:textarea value="${news.content}" property="content" styleClass="form-control color-tooltip input"/>
+
+            <div style="color: red"><st:errors property="content"/></div>
         </div>
+
         <div class="clear"></div>
         <div class="article-operations">
             <div class="article-operations">
@@ -85,12 +91,16 @@
                     <st:hidden property="operationType" value="Update"/>
                     <button type="submit"><bean:message key="message.update"/></button>
                 </c:if>
-                <c:if test="${target == 'list'}">
-                    <st:hidden property="operationType" value="Delete"/>
-                    <button type="submit"><bean:message key="message.delete"/></button>
-                </c:if>
+
             </div>
         </div>
+    </st:form>
+    <st:form action="/delete-news">
+        <c:if test="${target == 'list'}">
+            <st:hidden property="id" value="${news.id}"/>
+            <st:hidden property="operationType" value="Delete"/>
+            <button type="submit"><bean:message key="message.delete"/></button>
+        </c:if>
     </st:form>
 </div>
 

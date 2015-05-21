@@ -11,15 +11,6 @@
     </plug-in>
 
     <form-beans>
-        <!--<form-bean name="operationForm" type="org.apache.struts.action.DynaActionForm">-->
-            <!--<form-property name="id" type="java.lang.Integer"/>-->
-            <!--<form-property name="title" type="java.lang.String"/>-->
-            <!--<form-property name="date" type="java.lang.String"/>-->
-            <!--<form-property name="brief" type="java.lang.String"/>-->
-            <!--<form-property name="content" type="java.lang.String"/>-->
-            <!--<form-property name="operationType" type="java.lang.String"/>-->
-            <!--<form-property name="delArray" type="java.lang.Boolean[]"/>-->
-        <!--</form-bean>-->
         <form-bean name="operationForm" type="com.epam.testapp.model.form.Newsform"/>
 
         <form-bean name="localeForm" type="org.apache.struts.action.DynaActionForm">
@@ -40,7 +31,13 @@
                 path="/submit-form"
                 type="com.epam.testapp.presentation.action.NewsOperationAction"
                 input="/add-news.do">
-            <forward name="success" path="/news-list.do"/>
+            <forward name="success" path="/news-list.do" redirect="true"/>
+        </action>
+        <action name="operationForm"
+                path="/delete-news"
+                type="com.epam.testapp.presentation.action.NewsOperationAction"
+                validate="false">
+            <forward name="success" path="/news-list.do" redirect="true"/>
         </action>
 
         <action path="/news-list"

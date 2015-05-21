@@ -2,8 +2,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="st" uri="http://jakarta.apache.org/struts/tags-html" %>
-<%@taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
-<%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 
 <html>
 <head>
@@ -41,15 +41,20 @@
 
     <st:errors/>
 
-    <st:form action="/submit-form" styleClass="news-block panel panel-default">
+    <st:form action="/delete-news" styleClass="news-block panel panel-default">
         <st:hidden property="id" value="${news.id}"/>
 
         <div class="news-block-header text-center">
+            <div>
+                <label><a href="/news-list.do"><bean:message key="message.news.list"/></a></label> <label>>></label>
+                <c:if test="${target == 'list'}"><label><bean:message key="message.news.view"/></label></c:if>
+            </div>
             <div>${news.title}</div>
             <label>${news.getDateString()}</label>
         </div>
-        <br/>
-        <hr class="hr-header">
+        <div style="width: 100%; margin-top: 50px">
+            <hr class="hr-header">
+        </div>
         <div class="news-block-content panel panel-default">
             <div>${news.content}</div>
         </div>

@@ -56,7 +56,7 @@ public class NewsOperationAction extends ActionSupport {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         News news = new News();
         try {
-            if (form.getId() != null)
+            if (form.getId() != null && !form.getId().equals(""))
             news.setId(Integer.valueOf(form.getId()));
             news.setTitle(form.getTitle());
             news.setDate(format.parse(form.getNewsDate()));
