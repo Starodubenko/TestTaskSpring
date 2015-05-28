@@ -43,7 +43,7 @@
 
     <st:errors/>
 
-    <st:form action="/submit-form">
+    <st:form action="/delete-news">
         <div class="news-block panel panel-default">
             <div>
                 <label><bean:message key="message.news.list"/></label>

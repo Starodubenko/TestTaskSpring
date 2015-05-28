@@ -30,7 +30,8 @@
         <action name="operationForm"
                 path="/submit-form"
                 type="com.epam.testapp.presentation.action.NewsOperationAction"
-                input="/add-news.do">
+                input="/add-news.do"
+                validate="false">
             <forward name="success" path="/news-list.do" redirect="true"/>
         </action>
         <action name="operationForm"
