@@ -86,3 +86,7 @@
     height: 20px;
     padding: 0;
 }
+
+.clear {
+    clear:both;
+}

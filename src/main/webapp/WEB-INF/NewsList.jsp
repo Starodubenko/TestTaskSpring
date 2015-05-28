@@ -53,7 +53,7 @@
                     <div>${news.title}</div>
                     <label>${news.getDateString()}</label>
                 </div>
-                <br/>
+                <div class="clear"></div>
                 <hr class="hr-header">
                 <div class="news-block-content panel panel-default">
                     <div>${news.brief}</div>
@@ -65,7 +65,7 @@
                     <a href="/news-view.do?id=${news.id}"><bean:message key="message.news.view"/></a>
                     <a href="/news.do?id=${news.id}"><bean:message key="message.news.edit"/></a>
                 </div>
-                <br/>
+                <div class="clear"></div>
                 <br/>
             </c:forEach>
         </div>

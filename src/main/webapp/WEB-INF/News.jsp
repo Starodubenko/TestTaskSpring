@@ -40,8 +40,12 @@
     </div>
 
     <st:form action="/submit-form" styleClass="news-block panel panel-default">
-
-        <st:hidden property="id" value="${news.id}"/>
+        <c:if test="${not empty news.id}">
+            <st:hidden property="id" value="${news.id}"/>
+        </c:if>
+        <c:if test="${empty news.id}">
+            <st:hidden property="id" value=""/>
+        </c:if>
 
         <div class="news-block-header text-center">
             <div>

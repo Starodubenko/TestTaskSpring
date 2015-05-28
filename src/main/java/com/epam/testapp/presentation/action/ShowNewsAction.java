@@ -18,7 +18,7 @@ public class ShowNewsAction extends ActionSupport {
         String resetId = request.getParameter("resetId");
 
         Integer id = null;
-        if (request.getParameter("id") != null)
+        if (request.getParameter("id") != null && !request.getParameter("id").equals(""))
             id = Integer.valueOf(request.getParameter("id"));
         else if (request.getSession().getAttribute("id") != null)
             id = Integer.valueOf(String.valueOf(request.getSession().getAttribute("id")));
