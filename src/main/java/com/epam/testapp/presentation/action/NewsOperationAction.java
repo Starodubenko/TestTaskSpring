@@ -27,6 +27,7 @@ public class NewsOperationAction extends ActionSupport {
 
         String[] delArray = request.getParameterValues("delArray");
 
+
         String type = dAForm.getOperationType();
         switch (type) {
             case "Save":

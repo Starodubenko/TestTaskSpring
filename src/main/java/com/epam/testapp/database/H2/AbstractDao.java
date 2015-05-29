@@ -61,7 +61,7 @@ public abstract class AbstractDao<T extends AbstractEntity> extends JdbcDaoSuppo
     @Autowired
     public List<T> findAll() {
 
-        String query = "SELECT * FROM NEWS ORDER BY NEWS_DATE DESC";
+        String query = "SELECT * FROM NEWS ORDER BY ID DESC, NEWS_DATE DESC";
         List<T> entityList = getJdbcTemplate().query(query, new NewsMapper());
         return entityList;
     }
